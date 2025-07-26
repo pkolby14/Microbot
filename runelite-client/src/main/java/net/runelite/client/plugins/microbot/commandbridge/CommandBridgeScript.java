@@ -1,15 +1,15 @@
-package net.runelite.client.plugins.microbot.example;
+package net.runelite.client.plugins.microbot.commandbridge;
 
 import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.plugins.microbot.Script;
 
 import java.util.concurrent.TimeUnit;
 
-public class ExampleScript extends Script {
+public class CommandBridgeScript extends Script {
 
     public static boolean test = false;
 
-    public boolean run(ExampleConfig config) {
+    public boolean run(CommandBridgeConfig config) {    
         Microbot.enableAutoRunOn = false;
         mainScheduledFuture = scheduledExecutorService.scheduleWithFixedDelay(() -> {
             try {

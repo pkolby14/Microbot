@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.microbot.example;
+package net.runelite.client.plugins.microbot.VaultLooter;
 
 import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
@@ -13,42 +13,42 @@ import javax.inject.Inject;
 import java.awt.*;
 
 @PluginDescriptor(
-        name = PluginDescriptor.Default + "Example",
-        description = "Microbot example plugin",
-        tags = {"example", "microbot"},
+        name = PluginDescriptor.Default + "VaultLooter",
+        description = "Microbot VaultLooter plugin",
+        tags = {"VaultLooter", "microbot"},
         enabledByDefault = false
 )
 @Slf4j
-public class ExamplePlugin extends Plugin {
+public class VaultLooterPlugin extends Plugin {
     @Inject
-    private ExampleConfig config;
+    private VaultLooterConfig config;
     @Provides
-    ExampleConfig provideConfig(ConfigManager configManager) {
-        return configManager.getConfig(ExampleConfig.class);
+    VaultLooterConfig provideConfig(ConfigManager configManager) {
+        return configManager.getConfig(VaultLooterConfig.class);
     }
 
     @Inject
     private OverlayManager overlayManager;
     @Inject
-    private ExampleOverlay exampleOverlay;
+    private VaultLooterOverlay vaultLooterOverlay;
 
     @Inject
-    ExampleScript exampleScript;
+    private VaultLooterScript vaultLooterScript;
 
 
     @Override
-    protected void startUp() throws AWTException {
+    protected void startUp() {
         if (overlayManager != null) {
-            overlayManager.add(exampleOverlay);
-            exampleOverlay.myButton.hookMouseListener();
+            overlayManager.add(vaultLooterOverlay);
+            vaultLooterOverlay.myButton.hookMouseListener();
         }
-        exampleScript.run(config);
+        vaultLooterScript.run(config);
     }
 
     protected void shutDown() {
-        exampleScript.shutdown();
-        overlayManager.remove(exampleOverlay);
-        exampleOverlay.myButton.unhookMouseListener();
+        vaultLooterScript.shutdown();
+        overlayManager.remove(vaultLooterOverlay);
+        vaultLooterOverlay.myButton.unhookMouseListener();
     }
     int ticks = 10;
     @Subscribe

@@ -1,10 +1,10 @@
-package net.runelite.client.plugins.microbot.example;
+package net.runelite.client.plugins.microbot.PL1;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 
-@ConfigGroup("example")
-public interface ExampleConfig extends Config {
+@ConfigGroup("PL1")
+public interface PL1Config extends Config {
 /*    @ConfigItem(
             keyName = "Ore",
             name = "Ore",

@@ -1,0 +1,145 @@
+---
+alwaysApply: true
+---
+### AI Agent Instruction: Maintaining the `{BotName}Overview.md` File for Microbot Java Plugins
+
+File directory should be Microbotv4\runelite-client\src\main\java\net\runelite\client\plugins\microbot\{PLUGIN FOLDER}
+
+#### Purpose
+
+For every Microbot bot or plugin created, ensure there is a file named `{BotName}Overview.md` in the root directory. This file serves as a comprehensive, human-readable documentation system that provides both technical overview and operational transparency. The goal is to maintain perfect alignment between the user and AI agent regarding the plugin's intended functionality, implementation details, and execution flow.
+
+#### File Structure Requirements
+
+The `{BotName}Overview.md` file must follow this specific structure:
+
+```markdown
+# {BotName} Overview
+
+## 1. Plugin Summary
+[Brief description of plugin purpose and main functionality]
+
+## 2. File Stack Overview
+[Details of the four core components]
+
+## 3. Detailed Code Breakdown
+[Method-by-method explanation of functionality]
+
+## 4. Update Log
+[Timestamped changes and modifications]
+```
+
+#### Section Specifications
+
+##### **1. Plugin Summary**
+- **Core Purpose:** What the plugin accomplishes
+- **Main Workflow:** High-level execution steps
+- **Key Dependencies:** Which Rs2 utility classes are used
+- **Execution Model:** How the script runs (continuous loop, event-driven, etc.)
+
+##### **2. File Stack Overview**
+
+Document all four mandatory Microbot plugin components:
+
+**Script File (`{BotName}Script.java`)**
+- Main execution logic and timing
+- Loop structure and conditional flows
+- **Delay Information:** Specify all delays used
+  - Manual delays: `Global.sleep(2000)` → "2-second delay for bank interface loading"
+  - Framework built-in delays: `Rs2Bank.depositAll()` → "Built-in 600ms delay from Rs2Bank framework"
+  - Inter-method delays: Any timing between operations
+
+**Config File (`{BotName}Config.java`)**
+- User-configurable settings
+- Default values and ranges
+- Configuration dependencies
+
+**Plugin File (`{BotName}Plugin.java`)**
+- Lifecycle management (start/stop)
+- Overlay integration
+- Script coordination
+
+**Overlay File (`{BotName}Overlay.java`)**
+- Visual feedback elements
+- Real-time status display
+- Performance indicators
+
+##### **3. Detailed Code Breakdown**
+
+For each major method or class, provide:
+
+**Method Translation Format:**
+```markdown
+### `getUserInventory()`
+**Java Implementation:** `Rs2Inventory.getInventoryFood()`
+**Human Readable:** Scans the player's inventory and identifies all food items, returning a list of edible items with their quantities
+**Framework Details:** Uses built-in Rs2Inventory utility with 150ms internal delay
+**Dependencies:** Requires Rs2Player.isLoggedIn() check first
+**Returns:** List of food items or empty list if none found
+```
+
+**Timing and Delay Documentation:**
+- **Explicit Delays:** Document every `Global.sleep()`, `Global.sleepUntil()`, and custom timing
+- **Framework Delays:** Note built-in delays from Rs2 utility methods
+- **Conditional Timing:** Explain when delays vary based on conditions
+- **Performance Impact:** Mention if delays affect execution speed
+
+##### **4. Update Log**
+
+Maintain a chronological record with this format:
+```markdown
+## Update Log
+
+### [2024-01-15 14:30] - Version 1.2.1
+- **Added:** Enhanced bank withdrawal logic with fallback handling
+- **Modified:** Increased delay in `withdrawItems()` from 1s to 1.5s for stability
+- **Fixed:** NPE in inventory checking when player is in combat
+- **Framework:** Updated to use Rs2Bank.withdrawX() instead of deprecated withdrawItem()
+
+### [2024-01-14 09:15] - Version 1.2.0
+- **Added:** New configuration option for custom food types
+- **Modified:** Refactored main execution loop for better error handling
+- **Timing:** Reduced polling frequency from 100ms to 250ms to improve performance
+```
+
+#### Technical Implementation Guidelines
+
+##### **Delay Documentation Standards**
+- **Manual Delays:** Always explain the reason
+  ```java
+  Global.sleep(2000); // Wait for bank interface animation to complete
+  ```
+  **Documentation:** "2-second delay allowing bank interface to fully load and become interactive"
+
+- **Framework Delays:** Reference the source utility
+  ```java
+  Rs2Bank.depositAll(); // Has built-in 600ms delay
+  ```
+  **Documentation:** "Uses Rs2Bank.depositAll() with framework's built-in 600ms delay for inventory processing"
+
+##### **Method Documentation Standards**
+For each significant method, include:
+- **Purpose:** What it accomplishes
+- **Input/Output:** Parameters and return values
+- **Dependencies:** Required Rs2 utilities or conditions
+- **Timing:** All delays and their justification
+- **Error Handling:** How failures are managed
+- **Framework Integration:** Which Microbot utilities are used
+
+#### Maintenance Responsibilities
+
+- **Real-Time Updates:** Modify the overview file immediately when code changes
+- **Synchronization:** Ensure the documentation always reflects current implementation
+- **Debugging Support:** When code fails, compare actual behavior to documented intent
+- **Version Control:** Update the log section with every meaningful change
+- **User Transparency:** Make execution flow completely visible to users
+
+#### Error Handling and Debugging
+
+The overview file serves as the definitive reference for intended behavior. When bugs occur:
+- Compare actual execution to documented steps
+- Identify where implementation deviates from intent
+- Use timing information to diagnose performance issues
+- Reference dependency information to check integration problems
+
+This documentation system ensures both user and AI agent maintain complete understanding of the plugin's design, implementation, and operational characteristics throughout the development lifecycle.

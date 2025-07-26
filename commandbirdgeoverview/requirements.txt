@@ -1,0 +1,10 @@
+# Microbot CommandBridge Server Requirements
+
+flask==2.3.3
+requests==2.31.0
+python-dotenv==1.0.0  # Optional: for environment variables
+
+# Optional for production:
+# redis==4.6.0  # For command queue persistence
+# gunicorn==21.2.0  # Production WSGI server
+# psycopg2-binary==2.9.7  # PostgreSQL database support

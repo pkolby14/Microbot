@@ -1,0 +1,8 @@
+/* Minimal stub for OSRS-Script-Map main.css. For full styling, copy from https://github.com/Paradoxis/OSRS-Script-Map/blob/master/css/main.css */
+#map {
+  width: 100%;
+  height: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}

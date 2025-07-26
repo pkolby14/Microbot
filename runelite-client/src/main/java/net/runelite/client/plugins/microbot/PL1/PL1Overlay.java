@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.microbot.example;
+package net.runelite.client.plugins.microbot.PL1;
 
 import net.runelite.client.plugins.microbot.Microbot;
 import net.runelite.client.ui.FontManager;
@@ -11,10 +11,10 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 import javax.inject.Inject;
 import java.awt.*;
 
-public class ExampleOverlay extends OverlayPanel {
+public class PL1Overlay extends OverlayPanel {
     public final ButtonComponent myButton;
     @Inject
-    ExampleOverlay(ExamplePlugin plugin)
+    PL1Overlay(PL1Plugin plugin)
     {
         super(plugin);
         setPosition(OverlayPosition.TOP_LEFT);
@@ -23,14 +23,14 @@ public class ExampleOverlay extends OverlayPanel {
         myButton.setPreferredSize(new Dimension(100, 30));
         myButton.setParentOverlay(this);
         myButton.setFont(FontManager.getRunescapeBoldFont());
-        myButton.setOnClick(() -> Microbot.openPopUp("Microbot", String.format("S-1D:<br><br><col=ffffff>%s Popup</col>", "Example")));
+        myButton.setOnClick(() -> Microbot.openPopUp("Microbot", String.format("S-1D:<br><br><col=ffffff>%s Popup</col>", "PL1")));
     }
     @Override
     public Dimension render(Graphics2D graphics) {
         try {
             panelComponent.setPreferredSize(new Dimension(200, 300));
             panelComponent.getChildren().add(TitleComponent.builder()
-                    .text("Micro Example V1.0.0")
+                    .text("PL1 V1.0.0")
                     .color(Color.GREEN)
                     .build());
 
